@@ -1,0 +1,5 @@
+\begin{table}[H]\centering
+\resizebox{0.45\textwidth}{!}{
+  \begin{tabular}{rr|ccccc|l}
+     & &\multicolumn{5}{c}{Wg_x}\\
+     & &300nm&475nm&650nm&825nm&1000nm\\ \cline{1-9} \\[-1em]
