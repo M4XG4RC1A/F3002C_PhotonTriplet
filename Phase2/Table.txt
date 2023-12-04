@@ -1,23 +1,41 @@
 \begin{table}[H]\centering
 \resizebox{0.45\textwidth}{!}{
-  \begin{tabular}{rr|ccccc|l}
-     & &\multicolumn{5}{c}{Wg_x}\\
-     & &300nm&475nm&650nm&825nm&1000nm\\ \cline{1-9} \\[-1em]
-     \multirow{10}{*}{Wg_y}&\multirow{2}{*}{100nm}&0&0&0&0&0&\lambda\\
-&&&&&&&A_{eff}\\
-\cline{2-8} \\[-1em]
-&\multirow{2}{*}{325nm}&0&0&0&1&1&\lambda\\
-&&&&&0.9873&0.8519&A_{eff}\\
-\cline{2-8} \\[-1em]
-&\multirow{2}{*}{550nm}&0&0&2&2&2&\lambda\\
-&&&&0.9456,0.9117&0.7567,0.9458&0.7343,1.0150&A_{eff}\\
-\cline{2-8} \\[-1em]
-&\multirow{2}{*}{775nm}&0&1&2&2&3&\lambda\\
-&&&0.7399&0.7471,0.8995&0.8186,0.8120&0.8116,0.9093,1.6402&A_{eff}\\
-\cline{2-8} \\[-1em]
-&\multirow{2}{*}{1000nm}&0&2&2&3&4&\lambda\\
-&&&0.6885,1.6012&0.7374,0.9838&0.8240,0.9162,1.5950&0.9244,0.9272,1.4631,1.8062&A_{eff}\\
-\cline{2-8} \\[-1em]
+  \begin{tabular}{rr|cccccc|l}
+     & &\multicolumn{6}{c}{Wg_x}\\
+     & &300nm&335nm&370nm&405nm&440nm&475nm\\ \cline{1-10} \\[-1em]
+     \multirow{22}{*}{Wg_y}&\multirow{2}{*}{550nm}&0&0&0&0&0&0&\lambda\\
+&&&&&&&&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{595nm}&0&0&0&0&0&0&\lambda\\
+&&&&&&&&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{640nm}&0&0&0&0&0&1&\lambda\\
+&&&&&&&0.9259&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{685nm}&0&0&0&0&1&1&\lambda\\
+&&&&&&0.9053&0.8309&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{730nm}&0&0&0&1&1&1&\lambda\\
+&&&&&0.9188&0.8184&0.7740&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{775nm}&0&0&0&1&1&1&\lambda\\
+&&&&&0.8326&0.7683&0.7399&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{820nm}&0&0&1&1&1&1&\lambda\\
+&&&&0.8856&0.7789&0.7358&0.7173&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{865nm}&0&0&1&1&1&1&\lambda\\
+&&&&0.8209&0.7461&0.7156&0.7031&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{910nm}&0&0&1&1&1&1&\lambda\\
+&&&&0.7796&0.7249&0.7026&0.6944&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{955nm}&0&1&1&1&1&1&\lambda\\
+&&&0.8689&0.7535&0.7117&0.6950&0.6898&A_{eff}\\
+\cline{2-9} \\[-1em]
+&\multirow{2}{*}{1000nm}&0&1&1&1&1&2&\lambda\\
+&&&0.8247&0.7368&0.7038&0.6913&0.6885,1.6012&A_{eff}\\
+\cline{2-9} \\[-1em]
  \end{tabular}}
  \caption{Tabla de numero de modos para cada guía simulada a diferentes longitudes de onda} \label{table5_1}
 \end{table}

@@ -2,8 +2,13 @@
 %% getmodes
 clc;
 
-Xs = round(linspace(300,1000,5)*1000);
-Ys = round(linspace(100,1000,5)*1000);
+Xs = round(linspace(650,1000,11)*1000);
+Ys = round(linspace(100,325,6)*1000);
+
+Xs = round(linspace(475,650,6)*1000);
+Ys = round(linspace(325,550,6)*1000);
+Xs = round(linspace(300,475,6)*1000);
+Ys = round(linspace(550,1000,11)*1000);
 Ls = ["\lambda", "A_{eff}"];
 
 lenX = length(Xs);
@@ -56,5 +61,3 @@ fprintf(fileID,'%s\n'," \caption{Tabla de numero de modos para cada guía simula
 fprintf(fileID,'%s\n',"\end{table}");
 
 fclose(fileID);
-
-disp("Table writed")

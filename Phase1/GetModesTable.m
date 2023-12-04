@@ -2,8 +2,8 @@
 %% getmodes
 clc;
 
-Xs = round(linspace(650,1000,10)*1000);
-Ys = round(linspace(550,1000,10)*1000);
+Xs = round(linspace(300,1000,5)*1000);
+Ys = round(linspace(100,1000,5)*1000);
 Ls = ["\lambda", "A_{eff}"];
 
 lenX = length(Xs);
@@ -33,7 +33,7 @@ for y = Ys
     strLine = firstStrStart+"&\multirow{"+num2str(lenL)+"}{*}{"+num2str(y/1000)+"nm}";
     for l = Ls
         for x=Xs
-            load("./nModes/Waveguide"+string(x)+"_"+string(y)+"_1580.mat");
+            load("./nModes/Waveguide"+string(x)+"_"+string(y)+"_1596.mat");
             if l == "\lambda"
                 strLine = strLine+"&"+num2str(nmodes);
             else
@@ -56,3 +56,5 @@ fprintf(fileID,'%s\n'," \caption{Tabla de numero de modos para cada guía simula
 fprintf(fileID,'%s\n',"\end{table}");
 
 fclose(fileID);
+
+disp("Table writed")

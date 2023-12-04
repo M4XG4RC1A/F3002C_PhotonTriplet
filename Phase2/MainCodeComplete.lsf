@@ -40,7 +40,7 @@ singleSweep = {"type": "wavelength",
         "modes": 8};
 #Save data types
 SaveTypes = {"lumerical": false,
-        "matlab": true,
+        "matlab": false,
         "model": true};
 #Create overlap beam
 overlapBeam = {"direction": "2D Z normal",
@@ -60,19 +60,23 @@ prepareFDE(FDE);
 #Prepare Sweep Analysis
 #prepareSingleSweep(singleSweep);
 
+## Study 1
+
 ##Analysis
 #Set wavelengths to study
-lambs = [1.530,1.596]; #1530-1580
+lambs = [1.596]; #1530-1580
 #Diferent Sizes (largoxalto)
-wgX = linspace(0.3,1,5);#linspace(0.1,1,5)-8
-wgY = linspace(0.1,1,5);#linspace(0.1,1,5)-10
+wgX = linspace(0.65,1,11);#linspace(0.1,1,5)-8
+wgY = linspace(0.1,0.325,6);#linspace(0.1,1,5)-10
+
+print("Start Study 1");
 
 progress=0;
 
 for (l=lambs){
     for (x=wgX){
         for (y=wgY){
-        print("Progress: "+num2str(progress/(21*21))+"%");
+        print("Progress: "+num2str(progress/(66)*100)+"%");
         try {    
             print("Running x:"+num2str(x)+", y:"+num2str(y)+", l:"+num2str(l));
             #Change dimensions
@@ -87,9 +91,13 @@ for (l=lambs){
             #Calculate modes
             nmodes = runModes();
             Aeff = [0,0,0,0];
+            overlapTE = {"i": 0,"fraction": 0,"power": 0};
             
             if(nmodes!=0){
                 print("Modes>0, Modes:"+num2str(nmodes));
+            
+                createGaussian(overlapBeam,wg,meshFDE);
+                overlapTE = mainOverlapTE(nmodes);
                 
                 #Save data
                 for(m=1:nmodes){
@@ -102,7 +110,125 @@ for (l=lambs){
             }else{
                 print("No modes");
             }
-            matlabsave("./nModes/Waveguide"+num2str(x*1000000)+"_"+num2str(y*1000000)+"_"+num2str(l*1000),nmodes,Aeff);
+            matlabsave("./nModes/Waveguide"+num2str(x*1000000)+"_"+num2str(y*1000000)+"_"+num2str(l*1000),nmodes,Aeff,overlapTE);
+            print("Waveguide"+num2str(x*1000000)+"_"+num2str(y*1000000)+"_"+num2str(l*1000));
+        }
+        progress = progress+1;
+        }
+    }
+}
+print("End Study 1");
+
+print("Start Study 2");
+
+## Study 2
+
+##Analysis
+#Set wavelengths to study
+lambs = [1.596]; #1530-1580
+#Diferent Sizes (largoxalto)
+wgX = linspace(0.475,0.650,6);#linspace(0.1,1,5)-8
+wgY = linspace(0.325,0.55,6);#linspace(0.1,1,5)-10
+
+progress=0;
+
+for (l=lambs){
+    for (x=wgX){
+        for (y=wgY){
+        print("Progress: "+num2str(progress/(36)*100)+"%");
+        try {    
+            print("Running x:"+num2str(x)+", y:"+num2str(y)+", l:"+num2str(l));
+            #Change dimensions
+            wg.width = x;
+            wg.height = y;
+            FDE.wavelength = l;
+            #Prepare geometry and Mesh
+            centerWG(wg,base,wafer);
+            centerMesh(meshFDE,wg);
+            prepareFDE(FDE);
+                        
+            #Calculate modes
+            nmodes = runModes();
+            Aeff = [0,0,0,0];
+            overlapTE = {"i": 0,"fraction": 0,"power": 0};
+            
+            if(nmodes!=0){
+                print("Modes>0, Modes:"+num2str(nmodes));
+            
+                createGaussian(overlapBeam,wg,meshFDE);
+                overlapTE = mainOverlapTE(nmodes);
+                
+                #Save data
+                for(m=1:nmodes){
+                    if(m<=4){
+                        saveModes(m,"Modes","Waveguide"+num2str(round(x*1000))+"_"+num2str(round(y*1000))+"_"+num2str(l*1000)+"_Mode"+num2str(m),SaveTypes);
+                        Aeff(m) = getdata("FDE::data::mode"+num2str(m),"mode effective area");
+                        closeall;
+                    }
+                }
+            }else{
+                print("No modes");
+            }
+            matlabsave("./nModes/Waveguide"+num2str(x*1000000)+"_"+num2str(y*1000000)+"_"+num2str(l*1000),nmodes,Aeff,overlapTE);
+            print("Waveguide"+num2str(x*1000000)+"_"+num2str(y*1000000)+"_"+num2str(l*1000));
+        }
+        progress = progress+1;
+        }
+    }
+}
+print("End Study 2");
+
+print("Start Study 3");
+
+## Study 3
+
+##Analysis
+#Set wavelengths to study
+lambs = [1.596]; #1530-1580
+#Diferent Sizes (largoxalto)
+wgX = linspace(0.3,0.475,6);#linspace(0.1,1,5)-8
+wgY = linspace(0.55,1,11);#linspace(0.1,1,5)-10
+
+progress=0;
+
+for (l=lambs){
+    for (x=wgX){
+        for (y=wgY){
+        print("Progress: "+num2str(progress/(66)*100)+"%");
+        try {    
+            print("Running x:"+num2str(x)+", y:"+num2str(y)+", l:"+num2str(l));
+            #Change dimensions
+            wg.width = x;
+            wg.height = y;
+            FDE.wavelength = l;
+            #Prepare geometry and Mesh
+            centerWG(wg,base,wafer);
+            centerMesh(meshFDE,wg);
+            prepareFDE(FDE);
+                        
+            #Calculate modes
+            nmodes = runModes();
+            Aeff = [0,0,0,0];
+            overlapTE = {"i": 0,"fraction": 0,"power": 0};
+            
+            if(nmodes!=0){
+                print("Modes>0, Modes:"+num2str(nmodes));
+                
+                createGaussian(overlapBeam,wg,meshFDE);
+                overlapTE = mainOverlapTE(nmodes);
+            
+                #Save data
+                for(m=1:nmodes){
+                    if(m<=4){
+                        saveModes(m,"Modes","Waveguide"+num2str(round(x*1000))+"_"+num2str(round(y*1000))+"_"+num2str(l*1000)+"_Mode"+num2str(m),SaveTypes);
+                        Aeff(m) = getdata("FDE::data::mode"+num2str(m),"mode effective area");
+                        closeall;
+                    }
+                }
+            }else{
+                print("No modes");
+            }
+            matlabsave("./nModes/Waveguide"+num2str(x*1000000)+"_"+num2str(y*1000000)+"_"+num2str(l*1000),nmodes,Aeff,overlapTE);
             print("Waveguide"+num2str(x*1000000)+"_"+num2str(y*1000000)+"_"+num2str(l*1000));
         }
         progress = progress+1;
